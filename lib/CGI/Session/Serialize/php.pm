@@ -23,7 +23,7 @@ use PHP::Session::Serializer::PHP;
 #use Data::Dumper;
 
 @CGI::Session::Serialize::php::ISA = ('CGI::Session::ErrorHandler');
-$CGI::Session::Serialize::php::VERSION = '1.0';
+$CGI::Session::Serialize::php::VERSION = '1.1';
 
 sub freeze {
 	my $self = shift;
@@ -81,12 +81,13 @@ This library can be used by CGI::Session to serialize session data. It is a wrap
 the C<PHP::Session::Serializer::PHP>. Use of this serializer allows common session data 
 storage when writing Web Applications in both Perl and PHP. NOTE: you will need to store the 
 Session ID in your PHP session data structure as
-$_SESSION['_SESSION_ID'] = session_id();
+$_SESSION['_SESSION_ID'] = session_id(); 
 as the return from the C<thaw()> method is checked for it's existance. C<CGI::Session> will 
 croak with the error "Invalid data structure returned from thaw()" if it is not seen. Be careful 
 storing arrays as arrays look like hashes once serialized and deserialized. You will need extra 
 logic to convert them back to arrays again.
-Don't forget to add 'serializer:php' to your C<CGI::Session> initialiaztion string.
+Don't forget to add 'serializer:php' to your C<CGI::Session> initialization string.
+
 =head1 METHODS
 
 =over 4
